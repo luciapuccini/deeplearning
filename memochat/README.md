@@ -1,5 +1,15 @@
+# Update > How to run localy
+I think the server in steamship should be up and running. if not you will need the full instructions below this entry.
+
+1. create a .env.local with these: 
+```
+STEAMSHIP_API_KEY=269C6AFB-6835-4E4A-869A-28D8637406AD
+STEAMSHIP_PACKAGE_HANDLE=memohandle
+UNIQUE_WORKSPACE=33j
+```
+2. npm run dev 
+------------
 # AI Chat GPT-3 with Persistence using LangChain and Steamship
-https://www.steamship.com/workspaces/gpt-4-2d7/plugins/gpt-4-2d7
 
 [![Steamship](https://raw.githubusercontent.com/steamship-core/python-client/main/badge.svg)](https://www.steamship.com/build/langchain-on-vercel?utm_source=github&utm_medium=badge&utm_campaign=github_repo&utm_id=github_vercel_repo_ai_chatgpt)
 
