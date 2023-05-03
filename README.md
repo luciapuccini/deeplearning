@@ -1,5 +1,5 @@
 # Deeplearning
-Prompt Engineering for Developers
+Prompt Engineering for Developers. Course summary
 
 # Principles for prompts
 ## 1. Write clear and specific instructions
@@ -12,74 +12,110 @@ Can be anything like:
  - XML tags: <> </>
 
  Example:
- > Summaryze the text delimited by triple quotes into a single sentece. """{text}"""
-
+ ```
+Summaryze the text delimited by triple quotes into a single sentece. """{text}"""
+```
 ### Ask for structured output 
-> Generate a list of three made-up book titles along 
+```
+Generate a list of three made-up book titles along 
 with their authors and genres. 
 Provide them in JSON format with the following keys: 
 book_id, title, author, genre.
-
+```
 ### check wheather conditions are satisfied
-> You will be provided with text delimited by triple quotes. 
-> If it contains a sequence of instructions,  
-> re-write those instructions in the following format:
-> Step 1 - ...
-> Step 2 - …
-> …
-> Step N - …
->If the text does not contain a sequence of instructions,  
-> then simply write \"No steps provided.\"
-> \"\"\"{text_1}\"\"\"
-
+```
+You will be provided with text delimited by triple quotes. 
+If it contains a sequence of instructions,  
+re-write those instructions in the following format:
+Step 1 - ...
+Step 2 - …
+…
+Step N - …
+If the text does not contain a sequence of instructions,  
+then simply write \"No steps provided.\"
+```
 ### Few-shot propmpting
   give successful examples of completing task and then ask to perform task
-> Your task is to answer in a consistent style.
+```
+Your task is to answer in a consistent style.
 
-> < child >: Teach me about patience.
+<child>: Teach me about patience.
 
-> < grandparent >: The river that carves the deepest valley flows from a modest spring; the  grandest symphony originates from a single note; the most intricate tapestry begins with a solitary thread.
+<grandparent>: The river that carves the deepest valley flows from a modest spring; the  grandest symphony originates from a single note; the most intricate tapestry begins with a solitary thread.
 
-> < child >: Teach me about resilience.
+<child>: Teach me about resilience.
+```
 
 ## 2. Give the model time to think
 Chan of reasoning so that it gives more computational time so that the model doesn't "guess"  
 
 ###  Specify the steps required to complete a task
->Perform the following actions: 
->1 - Summarize the following text delimited by triple 
->backticks with 1 sentence.
+```
+Perform the following actions: 
+1 - Summarize the following text delimited by triple 
+backticks with 1 sentence.
 
->2 - Translate the summary into French.
+2 - Translate the summary into French.
 
->3 - List each name in the French summary.
+3 - List each name in the French summary.
 
->4 - Output a json object that contains the following 
->keys: french_summary, num_names.
+4 - Output a json object that contains the following 
+keys: french_summary, num_names.
 
->Separate your answers with line breaks.
-
->Text:
-> """{text}"""
+Separate your answers with line breaks.
+```
 
 ## Instruct the model to work out its own solution before rushing to a conclusion
+```
+Your task is to determine if the student's solution is correct or not.
+To solve the problem do the following:
 
->Your task is to determine if the student's solution is correct or not.
->To solve the problem do the following:
+First, work out your own solution to the problem. 
+Then compare your solution to the student's solution and evaluate if the student's solution is correct or not.  Don't decide if the student's solution is correct until  you have done the problem yourself.
 
->First, work out your own solution to the problem. 
->Then compare your solution to the student's solution and evaluate if the student's solution is correct or not.  Don't decide if the student's solution is correct until  you have done the problem yourself.
+Use the following format: Question: """question here""
 
-> Use the following format: Question: """question here""
+Student's solution:"""student's solution here"""
 
-> Student's solution:"""student's solution here"""
-
-> Actual solution:"""steps to work out the solution and your solution here """
-
-> Is the student's solution the same as actual solution just calculated: """yes or no"""
-
+Actual solution:"""steps to work out the solution and your solution here """
+Is the student's solution the same as actual solution just calculated: """yes or no"""
+```
 
 ## Model Limitations: Hallucinations
 The model doesn't know the boundries of its knowledge, so it can make up some solutions.
 This can be dangerous because the responses sound realistics
 One aditional tatic to reduce hallucinations is to ask first to find relevant information and then answer based on that.
+
+# Iterative developmment
+There isn't a perfect promp, you need a process for your specific app
+
+idea > implementation > experimental result > analysis
+
+## Guidelines
+- be clear and specific
+- analyze why result does not give desired output
+- redefine idea
+- repeat
+
+## Capabilities
+
+### Summarizing
+- Summarize with a word/sentence/character limit
+- Try "extract" instead of "summarize"
+
+### Inferring
+Infer sentiment or topics from inputs.
+
+### Transforming
+We can use Large Language Models for text transformation tasks such as language translation, spelling and grammar checking, tone adjustment, and format conversion.
+
+### Expanding
+Customize the replys to a customer based on inputs.
+
+## The Chat Format
+
+<img src="chat .png"
+     alt="chat format"
+     style="width:300px; height:300px" />
+
+Each conversation with a language model is standalone interaction which means that you need to provide all relevant messages to the model. We call that context, and you need to append it to the user messages keep a conversation
